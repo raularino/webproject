@@ -18,16 +18,20 @@ class BanggoodClient(object):
 
     def search_products(self, page):
         tree=BeautifulSoup(page,'lxml')
-        ul=tree.find("ul", "goodlist_1") 
+        ul=tree.find("ul", "goodlist_1")
         li=ul.find_all("li")
         prices_list=[]
         titles_list=[]
         for item in li:
             #process item
             price=item.find("span","price")
+            price_old=item.find("span","price")
             title=item.find("span","title")
-            prices_list.append((price['oriprice']))
-            titles_list.append((title.text))
+            print(title.text + " OLD PRICE: " + price_old['oriprice'] + " OFFER: " + price['oriprice'])
+            #print(price['oriprice'])
+            #print(price_old['oriprice'])
+            #prices_list.append((price['oriprice']))
+            #titles_list.append((title.text))
         return prices_list,titles_list
 
     def run(self):
@@ -36,9 +40,8 @@ class BanggoodClient(object):
         data=self.search_products(page)
     #search activities in web page
     #print the activities
-        print(data)
+        #print(data)
 
 if __name__ == "__main__" :
     c = BanggoodClient()
     c.run()
-
