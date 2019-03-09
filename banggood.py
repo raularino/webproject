@@ -27,11 +27,10 @@ class BanggoodClient(object):
             price=item.find("span","price")
             price_old=item.find("span","price")
             title=item.find("span","title")
-            print(title.text + " OLD PRICE: " + price_old['oriprice'] + " OFFER: " + price['oriprice'])
-            #print(price['oriprice'])
-            #print(price_old['oriprice'])
-            #prices_list.append((price['oriprice']))
-            #titles_list.append((title.text))
+            prices_list.append((price['oriprice']))
+            titles_list.append((title.text))
+            print(title.text + " NORMAL PRICE: " + price_old['oriprice'] + " OFFER: " + price['oriprice'] + "\n")
+
         return prices_list,titles_list
 
     def run(self):
